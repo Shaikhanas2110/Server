@@ -43,6 +43,7 @@ const subscriptionSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isRecurring: { type: Boolean, default: true },
   },
   {
     timestamps: true,
@@ -74,13 +75,17 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     subscriptions: [subscriptionSchema],
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    }, // 👈 Added role field
     isActive: {
       type: Boolean,
       default: true,
     },
     remindersEnabled: {
       type: Boolean,
-      default: true, // ✅ New field: Email reminders enabled by default
+      default: true,
     },
     preferences: {
       emailReminders: {
@@ -98,6 +103,13 @@ const userSchema = new mongoose.Schema(
       monthlyReport: {
         type: Boolean,
         default: false,
+      },
+      googleAuth: {
+        access_token: { type: String },
+        refresh_token: { type: String },
+        scope: { type: String },
+        token_type: { type: String },
+        expiry_date: { type: Number },
       },
     },
   },

@@ -18,7 +18,7 @@ const startScheduler = () => {
 
       for (const user of users) {
         const reminderDays = user.preferences.reminderDays || 2; // Default to 2 if missing
-
+        console.log(reminderDays);
         const upcomingDate = new Date(today);
         upcomingDate.setDate(today.getDate() + reminderDays);
 

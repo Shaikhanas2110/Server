@@ -80,6 +80,7 @@ router.post(
         category,
         nextPaymentDate,
         description,
+        isRecurring, // ✅ add this
       } = req.body;
 
       // Validate next payment date is not in the past
@@ -105,6 +106,7 @@ router.post(
         category,
         nextPaymentDate,
         description: description || "",
+        isRecurring: isRecurring === true || isRecurring === "true", // ✅ sanitize
       };
 
       user.subscriptions.push(newSubscription);
@@ -167,6 +169,10 @@ router.put(
       .trim()
       .isLength({ max: 500 })
       .withMessage("Description must be less than 500 characters"),
+    body("isRecurring")
+      .optional()
+      .isBoolean()
+      .withMessage("isRecurring must be true or false"),
   ],
   async (req, res) => {
     try {
@@ -188,6 +194,11 @@ router.put(
             .status(400)
             .json({ message: "Next payment date cannot be in the past" });
         }
+      }
+
+      if (req.body.isRecurring !== undefined) {
+        req.body.isRecurring =
+          req.body.isRecurring === true || req.body.isRecurring === "true";
       }
 
       const user = await User.findById(req.user._id);
