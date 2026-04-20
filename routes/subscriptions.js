@@ -6,7 +6,7 @@ import auth from "../middleware/auth.js";
 const router = express.Router();
 
 // @route   GET /api/subscriptions
-// @desc    Get all subscriptions for user
+// @desc    Get all subscriptions for users
 // @access  Private
 router.get("/", auth, async (req, res) => {
   try {
