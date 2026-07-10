@@ -6,7 +6,7 @@ import rateLimit from "express-rate-limit";
 import connectDB from "./config/database.js";
 import startScheduler from "./utils/reminderScheduler.js";
 
-// Import routes
+
 import authRoutes from "./routes/auth.js";
 import subscriptionRoutes from "./routes/subscriptions.js";
 import userRoutes from "./routes/user.js";
