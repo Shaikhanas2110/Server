@@ -11,7 +11,7 @@ const startScheduler = () => {
     today.setHours(0, 0, 0, 0);
 
     try {
-      // Find users who have reminders enabled
+
       const users = await User.find({
         "preferences.emailReminders": true,
       });
