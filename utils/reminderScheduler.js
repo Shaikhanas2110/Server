@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import transporter from "../config/mailer.js";
 
 const startScheduler = () => {
-  // Runs every day at 9 AM
+
   cron.schedule("0 9 * * *", async () => {
     console.log("🔔 Running reminder job...");
 
